@@ -19,7 +19,8 @@ exports.getUser= (req, res)=>{
     req.profile.createdAt = undefined;
     req.profile.updatedAt = undefined;
     return res.json(req.profile);
-}
+};
+
 exports.updateUser = (req, res)=>{
     User.findByIdAndUpdate(
         {_id : req.profile.id},
@@ -36,7 +37,7 @@ exports.updateUser = (req, res)=>{
            res.json(user);
         }
     )
-}
+};
 
 exports.userPurchaseList = (req, res)=> {
     Order.find({user: req.profile._id})
