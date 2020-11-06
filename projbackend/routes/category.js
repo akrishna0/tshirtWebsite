@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {getCategoryById} = require('../controllers/category')
+const {getCategoryById, createCategory} = require('../controllers/category')
 const {isSignedIn,isAdmin, isAuthenticated} = require('../controllers/auth')
 const {getUserById} = require('../controllers/user')
 
