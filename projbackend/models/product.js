@@ -35,7 +35,7 @@ const productSchema = new schema({
         default: 0
     },
     photo: {
-        type: Buffer,
+        data: Buffer,
         contentType: String
     }
 
