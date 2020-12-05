@@ -35,7 +35,7 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 //PORT
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 8000;
 
 //Starting a server
 app.listen(port, () => {
