@@ -6,7 +6,7 @@ import Base from './Base';
 function Home() {
     console.log("API IS THIS", API);
     return (
-        <Base title="Home Page" description="This is the First Page">
+        <Base title="Home Page" description="Welcome to the Store">
             <h1 className="text-white">Home is this</h1>
         </Base>
     )
