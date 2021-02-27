@@ -20,33 +20,34 @@ const Signin = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
-    signin({ email, password }).then((data) => {
-      if (data.errors) {
-        setValues({ ...values, error: data.errors, loading: false });
-      } else {
-        authenticate(data, () => {
-          setValues({
-            ...values,
-            didRedirect: true,
+    signin({ email, password })
+      .then((data) => {
+        if (data.errors) {
+          setValues({ ...values, error: data.errors, loading: false });
+        } else {
+          authenticate(data, () => {
+            setValues({
+              ...values,
+              didRedirect: true,
+            });
           });
-        });
-      }
-    })
-    .catch(console.log("SIGNIN FAILED"))
+        }
+      })
+      .catch(console.log("SIGNIN FAILED"));
   };
 
-  const performRedirect =()=>{
-      if(didRedirect){
-          if(user && user.role === 1){
-              return(<p>redirect to admin dashboard</p>)
-          }else{
-              return(<p>redirect to user dashboard</p>)
-          }
+  const performRedirect = () => {
+    if (didRedirect) {
+      if (user && user.role === 1) {
+        return <Redirect to="/admin/dashboard" />;
+      } else {
+        return <Redirect to="/user/dashboard" />;
       }
-      if(isAuthenticated()){
-          return <Redirect to="/" />
-      }
-  }
+    }
+    if (isAuthenticated()) {
+      return <Redirect to="/" />;
+    }
+  };
 
   const loadingMessage = () => {
     return (
@@ -56,7 +57,7 @@ const Signin = () => {
             className="alert alert-success"
             style={{ display: loading ? "" : "none" }}
           >
-              <h1>Loading......</h1>
+            <h1>Loading......</h1>
           </div>
         </div>
       </div>
