@@ -83,31 +83,32 @@ const Signup = () => {
     );
   };
   const successMessage = () => {
-    return ( 
-        <div className="row">
+    return (
+      <div className="row">
         <div className="col-md-4 offset-sm-4 text-left">
-    <div
-      className="alert alert-success"
-      style={{ display: success ? "" : "none" }}
-    >
-      New Account created successfully!
-      <Link to="/sigin">Login here</Link>
-    </div>
-    </div>
-    </div>);
+          <div
+            className="alert alert-success"
+            style={{ display: success ? "" : "none" }}
+          >
+            New Account created successfully!
+            <Link to="/signin">Login here</Link>
+          </div>
+        </div>
+      </div>
+    );
   };
   const errorMessage = () => {
-    return(
-        <div className="row">
+    return (
+      <div className="row">
         <div className="col-md-4 offset-sm-4 text-left">
-    <div
-      className="alert alert-danger"
-      style={{ display: error ? "" : "none" }}
-    >
-        {error}
-    </div>
-    </div>
-    </div>
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            {error}
+          </div>
+        </div>
+      </div>
     );
   };
   return (

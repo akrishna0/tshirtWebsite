@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/helper/index";
 const Signin = () => {
   const [values, setValues] = useState({
     email: "",
     password: "",
     error: "",
+    role: "",
     loading: false,
     didRedirect: false,
   });
-  const { email, password, error, loading, didRedirect } = values;
-  const { user } = isAuthenticated;
+  const { email, password, role, error, loading, didRedirect } = values;
+  const { user } = isAuthenticated();
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -38,7 +39,7 @@ const Signin = () => {
 
   const performRedirect = () => {
     if (didRedirect) {
-      if (user && user.role === 1) {
+      if (role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
         return <Redirect to="/user/dashboard" />;
