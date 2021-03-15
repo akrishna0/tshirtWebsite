@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
-import { getCategories } from "./helper/adminapicall";
+import { createaProduct, getCategories } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper/index";
 function AddProduct() {
   const { user, token } = isAuthenticated();
@@ -17,7 +17,7 @@ function AddProduct() {
     error: "",
     createdProduct: "",
     getRedirect: false,
-    formData: {},
+    formData: new FormData(),
   });
   const {
     name,
@@ -44,19 +44,51 @@ function AddProduct() {
     });
   };
 
-  // useEffect(() => {
-  //   preload();
-  // }, []);
-  const onSubmit = () => {
-    //
+  useEffect(() => {
+    preload();
+  }, []);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setValues({ ...values, error: "", loading: true });
+    createaProduct(user._id, token, formData).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          description: "",
+          price: "",
+          stock: "",
+          photo: "",
+          loading: false,
+          createdProduct: data.name,
+        });
+      }
+    });
   };
 
   const handleChange = (name) => (event) => {
-    const value = name === "photo" ? event.target.file[0] : event.target.value;
+    const value = name === "photo" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
   };
-
+  const successMessage = () => (
+    <div
+      className="alert alert-success mt-3"
+      style={{ display: createdProduct ? "" : "none" }}
+    >
+      <h3>{createdProduct} created Successfully!</h3>
+    </div>
+  );
+  const errorMessage = () => (
+    <div
+      className="alert alert-danger mt-3"
+      style={{ display: error ? "" : "none" }}
+    >
+      <h3>{error}</h3>
+    </div>
+  );
   const createProductForm = () => (
     <form>
       <span>Post photo</span>
@@ -115,7 +147,7 @@ function AddProduct() {
       </div>
       <div className="form-group">
         <input
-          onChange={handleChange("quantity")}
+          onChange={handleChange("stock")}
           type="number"
           className="form-control"
           placeholder="Quantity"
@@ -143,7 +175,11 @@ function AddProduct() {
         Admin Home
       </Link>
       <div className="row bg-dark text-white rounded">
-        <div className="col-md-8 offset-md-2">{createProductForm()}</div>
+        <div className="col-md-8 offset-md-2">
+          {errorMessage()}
+          {successMessage()}
+          {createProductForm()}
+        </div>
       </div>
     </Base>
   );

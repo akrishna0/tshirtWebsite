@@ -35,7 +35,6 @@ exports.getAllCategory = (req, res) => {
         error: "No category found",
       });
     }
-    console.log("ERROR OCUURRING");
     res.json(categories);
   });
 };
