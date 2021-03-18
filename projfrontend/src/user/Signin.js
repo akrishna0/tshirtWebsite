@@ -12,7 +12,7 @@ const Signin = () => {
     didRedirect: false,
   });
   const { email, password, role, error, loading, didRedirect } = values;
-  const { user } = isAuthenticated();
+  // const { user } = isAuthenticated();
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
