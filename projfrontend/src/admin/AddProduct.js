@@ -17,7 +17,7 @@ function AddProduct() {
     error: "",
     createdProduct: "",
     getRedirect: false,
-    formData: new FormData(),
+    formData: {},
   });
   const {
     name,
@@ -39,7 +39,7 @@ function AddProduct() {
       if (data.error) {
         setValues({ ...values, errors: data.error });
       } else {
-        setValues({ ...values, categories: data });
+        setValues({ ...values, categories: data, formData: new FormData() });
       }
     });
   };
