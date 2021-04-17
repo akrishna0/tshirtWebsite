@@ -194,8 +194,8 @@ function UpdateProduct({ match }) {
 
   return (
     <Base
-      title="Add Product"
-      description="Welcome This is to Add a Product"
+      title="Update Product"
+      description="Welcome This is to Update a Product"
       className="container bg-info p-4"
     >
       <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
