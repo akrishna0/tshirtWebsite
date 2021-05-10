@@ -37,7 +37,7 @@ app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentBRoutes);
 //PORT
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 
 //Starting a server
 app.listen(port, () => {

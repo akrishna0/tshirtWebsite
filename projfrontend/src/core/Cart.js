@@ -5,6 +5,7 @@ import Base from "./Base";
 import Card from "./Card";
 
 import { loadCart } from "./helper/CartHelper";
+import Payment from "./Payment";
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
@@ -12,7 +13,7 @@ const Cart = () => {
     setProducts(loadCart);
   }, [reload]);
 
-  const loadAllProducts = () => {
+  const loadAllProducts = (products) => {
     return (
       <div>
         <h1>This is load All products</h1>
@@ -39,8 +40,16 @@ const Cart = () => {
   return (
     <Base title="Cart Page" description="Check your Cart">
       <div className="row">
-        <div className="col-6">{loadAllProducts()}</div>
-        <div className="col-6">{loadCheckout()}</div>
+        <div className="col-6">
+          {products.length > 0 ? (
+            loadAllProducts(products)
+          ) : (
+            <h3>No Products in Cart</h3>
+          )}
+        </div>
+        <div className="col-6">
+          <Payment products={products} setReload={setReload} />
+        </div>
       </div>
     </Base>
   );
