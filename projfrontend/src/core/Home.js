@@ -4,9 +4,11 @@ import { API } from "../backend";
 import Base from "./Base";
 import Card from "./Card";
 import { getProducts } from "../core/helper/coreapicalls";
+
 function Home() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
+  
   const loadAllProducts = () => {
     getProducts().then((data) => {
       if (data.error) {
@@ -20,6 +22,7 @@ function Home() {
   useEffect(() => {
     loadAllProducts();
   }, []);
+  
   return (
     <Base title="Home Page" description="Welcome to the Store">
       <div className="">

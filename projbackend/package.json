@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +27,9 @@
     "nodemon": "^1.19.4",
     "npm": "^6.13.0",
     "uuid": "^3.3.3"
+  },
+  "engines": {
+    "node": "14.x",
+    "npm": "6.14.7"
   }
 }
