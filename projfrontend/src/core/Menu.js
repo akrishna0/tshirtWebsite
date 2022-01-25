@@ -5,7 +5,6 @@ const { user } = isAuthenticated();
 
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
-    console.log("THIS IS USER", user);
     return { color: "#32db2c" };
   }
   return { color: "#FFFFFF" };

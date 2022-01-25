@@ -35,7 +35,7 @@ function AddProduct() {
   } = values;
   const preload = () => {
     getCategories().then((data) => {
-      console.log(data);
+
       if (data.error) {
         setValues({ ...values, errors: data.error });
       } else {

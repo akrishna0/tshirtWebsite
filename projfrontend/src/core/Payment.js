@@ -15,11 +15,12 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
     clientToken: null,
     instance: {},
   });
+
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
+
   const getmeToken = (userId, token) => {
     getToken(userId, token).then((info) => {
-      //   console.log("INFORMATION", info);
       if (info.error) {
         setInfo({ ...info, error: info.error });
       } else {
@@ -32,6 +33,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
   const onPurchased = () => {
     setInfo({ loading: true });
     let nonce;
+
     let getNonce = info.instance.requestPaymentMethod().then((data) => {
       nonce = data.nonce;
       const paymentData = {
@@ -88,6 +90,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
       </div>
     );
   };
+
   useEffect(() => {
     getmeToken(userId, token);
   }, []);

@@ -42,7 +42,6 @@ const UpdateCategory = ({ match }) => {
     // backend request
     updateaCategory(user._id, token, { name }).then((data) => {
       if (data.errors) {
-        console.log("THIS IS THE ERR", data.errors);
         setError(data.error);
       } else {
         setError("");
