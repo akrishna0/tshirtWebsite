@@ -16,7 +16,7 @@ export const getToken = (userId, token) => {
 };
 
 export const processPayment = (userId, token, paymentInfo) => {
-  return fetch(`${API}/payment/braintree/${userId}}`, {
+  return fetch(`${API}/payment/braintree/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
-import { API } from "../backend";
+
 import Base from "./Base";
 import Card from "./Card";
 
@@ -41,7 +41,7 @@ const Cart = () => {
     <Base title="Cart Page" description="Check your Cart">
       <div className="row">
         <div className="col-6">
-          {products.length > 0 ? (
+          {products?.length > 0 ? (
             loadAllProducts(products)
           ) : (
             <h3>No Products in Cart</h3>

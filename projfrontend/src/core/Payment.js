@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { isAuthenticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/CartHelper";
 import { getToken, processPayment } from "./helper/paymentHelper";
@@ -21,6 +21,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
 
   const getmeToken = (userId, token) => {
     getToken(userId, token).then((info) => {
+      console.log("TO INFO___________ ___ : ", info)
       if (info.error) {
         setInfo({ ...info, error: info.error });
       } else {
@@ -33,8 +34,10 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
   const onPurchased = () => {
     setInfo({ loading: true });
     let nonce;
-
-    let getNonce = info.instance.requestPaymentMethod().then((data) => {
+console.log("PAYMENT DONE ______");
+    let getNonce = info.instance
+    .requestPaymentMethod()
+    .then((data) => {
       nonce = data.nonce;
       const paymentData = {
         paymentMethodNonce: nonce,
@@ -75,12 +78,13 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
     return (
       <div>
         {info.clientToken !== null && products.length > 0 ? (
+          
           <div>
             <DropIn
               options={{ authorization: info.clientToken }}
               onInstance={(instance) => (info.instance = instance)}
             />
-            <button className="btn btn-success" onclick={onPurchased}>
+            <button className="btn btn-success" onClick={onPurchased}>
               buy
             </button>
           </div>
@@ -92,8 +96,10 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
   };
 
   useEffect(() => {
+console.log("THISIS IS HEREU+ USEFFECT ---------");
     getmeToken(userId, token);
   }, []);
+  
   return (
     <div>
       <h3>your Bill is {getAmount()} $</h3>
